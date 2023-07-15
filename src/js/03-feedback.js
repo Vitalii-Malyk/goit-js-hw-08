@@ -2,12 +2,9 @@ import throttle from 'lodash.throttle';
 
 const formEl = document.querySelector('.feedback-form');
 
-const formSubmitEl = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
 
-const feedbackForm = {};
-
-populateInput();
+let feedbackForm = {};
 
 formEl.addEventListener('input', throttle(onInputChange, 500));
 formEl.addEventListener('submit', onFormSubmit);
@@ -17,15 +14,16 @@ function onInputChange(event) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackForm));
 }
 
-function onFormSubmit(event) {
-  event.preventDefault();
+function onFormSubmit(e) {
+  e.preventDefault();
   const {
     elements: { email, message },
-  } = eventCurrentTarget;
+  } = e.currentTarget;
   if (email.value === '' || message.value === '') {
     return alert('Please fill in all fields of the form');
   }
-  event.currentTarget.reset();
+  e.currentTarget.reset();
+  console.log(feedbackForm);
   feedbackForm = {};
   localStorage.removeItem(STORAGE_KEY);
 }
@@ -33,9 +31,13 @@ function onFormSubmit(event) {
 function populateInput() {
   const saveInput = localStorage.getItem(STORAGE_KEY);
   if (saveInput) {
+    console.log(saveInput);
+    console.log(JSON.parse(saveInput));
     feedbackForm = JSON.parse(saveInput);
     for (let key in feedbackForm) {
       formEl[key].value = feedbackForm[key];
     }
   }
 }
+
+populateInput();
