@@ -13,7 +13,6 @@ function stopTime(event) {
   // console.log(typeof event.seconds);
   const value = event.seconds;
   localStorage.setItem(STORAGE_KEY, value);
-  console.log(Number(localStorage.getItem(STORAGE_KEY, value)));
 }
 
 player.on('timeupdate', throttle(stopTime, 1000));

@@ -30,6 +30,10 @@ function onFormSubmit(event) {
   event.preventDefault();
   event.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
+  const feedbackForm = {
+    email: '',
+    message: '',
+  };
   console.log(feedbackForm);
 }
 

@@ -6,8 +6,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 console.log(galleryItems);
 
-console.log(galleryItems);
-
 const imagesListArr = galleryItems
   .map((image, index) => {
     return `
