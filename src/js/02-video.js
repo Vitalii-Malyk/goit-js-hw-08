@@ -11,15 +11,16 @@ playTime();
 
 function stopTime(event) {
   // console.log(typeof event.seconds);
-  localStorage.setItem(STORAGE_KEY, event.seconds);
-  console.log(Number(localStorage.getItem(STORAGE_KEY, values)));
+  const value = event.seconds;
+  localStorage.setItem(STORAGE_KEY, value);
+  console.log(Number(localStorage.getItem(STORAGE_KEY, value)));
 }
 
 player.on('timeupdate', throttle(stopTime, 1000));
 
 function playTime() {
   player
-    .setCurrentTime(Number(localStorage.getItem(STORAGE_KEY, values)))
+    .setCurrentTime(Number(localStorage.getItem(STORAGE_KEY)))
     .then(function (seconds) {
       // seconds = the actual time that the player seeked to
     })
