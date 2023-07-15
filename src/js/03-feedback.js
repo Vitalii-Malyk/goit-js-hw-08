@@ -5,6 +5,7 @@ const formEl = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
 
 let feedbackForm = {};
+populateInput();
 
 formEl.addEventListener('input', throttle(onInputChange, 500));
 formEl.addEventListener('submit', onFormSubmit);
@@ -38,5 +39,3 @@ function populateInput() {
     }
   }
 }
-
-populateInput();
